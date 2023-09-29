@@ -2,11 +2,13 @@
 // or browse Examples
 // Code your design here
 `timescale 1ns / 1ns
-module test_bench();
+module test();
 	reg d;
-	reg clk,rest;
+	reg rest;
+	reg CLOCK_50;
+	parameter CLOCK_PERIOD = 2;
 	wire q;
-	register DUT(d,q,rest,clk);
+	register DUT(d,q,rest,CLOCK_50);
 	
 	initial
 	begin
@@ -15,15 +17,13 @@ module test_bench();
 	end
 	
 	
-	initial
-		begin: CLOCK_GENERATOR
-			clk = 0;
-			forever
-				begin
-					#2 clk = ~clk;
-				end
-		end
-		
+	initial begin
+		CLOCK_50 <= 1'b0;
+	end // initial
+	always @ (*)
+	begin : Clock_Generator
+		#((CLOCK_PERIOD) / 2) CLOCK_50 <= ~CLOCK_50;
+	end
 
 
 	

@@ -1,0 +1,62 @@
+// Code your testbench here
+// or browse Examples
+// Code your design here
+`timescale 1ns / 1ns
+module test_bench();
+	reg d;
+	reg clk,rest;
+	wire q;
+	register DUT(d,q,rest,clk);
+	
+	initial
+	begin
+	d=0;
+	rest=1;
+	end
+	
+	
+	initial
+		begin: CLOCK_GENERATOR
+			clk = 0;
+			forever
+				begin
+					#2 clk = ~clk;
+				end
+		end
+		
+
+
+	
+	
+	
+	initial
+	begin
+	
+	#1;d=0;
+	#2;d=1;
+	#1;d=0;
+	#1;d=1;
+	#5;rest=0;
+	
+	
+	
+	
+	
+	
+	end
+	
+	
+	
+	initial
+	begin
+	#1000 $stop;
+	end
+	initial
+  begin
+    $dumpfile("dump.vcd");
+    $dumpvars(1);
+  end
+	
+	
+
+endmodule

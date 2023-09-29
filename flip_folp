@@ -1,0 +1,12 @@
+module register(d,q,rest,clk);
+	input clk,rest;
+	output reg q;
+	input d;
+	
+	always@(posedge clk,negedge rest)
+	
+	if (!rest)
+		q=0;
+	else
+		q=d;
+endmodule

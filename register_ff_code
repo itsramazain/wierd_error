@@ -1,0 +1,18 @@
+///rigster with n_bit latches
+
+module latch(d,q,clk,rest);
+	parameter n=32;
+	input [n-1:0]d;
+	output reg[n-1:0]q;
+	input clk,rest;
+	
+	always@(clk,rest)
+		if(!rest)
+		q<=0;
+		else if (clk)
+		q<=d;
+endmodule
+	
+	
+	
+	
